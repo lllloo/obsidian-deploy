@@ -60,6 +60,7 @@ const EXCLUDED = new Set([
   "content/index.md",
   "content/master-index.md",
   "content/CLAUDE.md",
+  "content/topics-review.md",
 ]);
 
 // Schema / 檔名豁免：Web Clipper 剪下的原料，整理進 Cards 前不檢查檔名空格與 frontmatter schema。
