@@ -32,7 +32,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: lllloo/obsidian-memory
-          token: ${{ secrets.VAULT_PAT }}
           path: content
       - uses: actions/setup-node@v4
         with:
