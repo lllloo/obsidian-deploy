@@ -18,6 +18,8 @@ const config: QuartzConfig = {
     ignorePatterns: [
       // Obsidian 本地 / vault 內部
       "private", ".obsidian", "CLAUDE.md", "Inbox",
+      // obsidian-memory repo 的工程檔（CI checkout 後會出現在 content/ 根）
+      "package.json", "scripts", "CNAME", "topics-review.md", "master-index.md",
       // 敏感資料保險（content/ 下若被誤拖入即攔截）
       ".env*", "*.local", "secrets*", "credentials*", "*.key", "*.pem",
       // 系統雜檔
