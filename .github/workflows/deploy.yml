@@ -33,10 +33,18 @@ jobs:
         with:
           repository: lllloo/obsidian-memory
           path: content
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+      - name: Cache Quartz build artifacts
+        uses: actions/cache@v4
+        with:
+          path: .quartz-cache
+          key: quartz-${{ runner.os }}-${{ hashFiles('content/**/*.md') }}
+          restore-keys: |
+            quartz-${{ runner.os }}-
       - name: Install dependencies
         run: npm ci
       - name: Vault check (frontmatter + sensitive data)
