@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .quartz-cache
-          key: quartz-${{ runner.os }}-${{ hashFiles('content/**/*.md', 'quartz.config.ts', 'quartz.layout.ts') }}
+          key: quartz-${{ runner.os }}-${{ hashFiles('quartz.config.ts', 'quartz.layout.ts', 'package-lock.json') }}
           restore-keys: |
             quartz-${{ runner.os }}-
       - name: Install dependencies
