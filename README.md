@@ -2,7 +2,7 @@
 
 Quartz 4 部署框架，將 [obsidian-memory](https://github.com/lllloo/obsidian-memory) vault 發佈至 [ob.bugloop.com](https://ob.bugloop.com)。
 
-Vault 筆記本體、skills、稽核腳本均由 obsidian-memory 管理，本 repo 只負責 Quartz 設定與 CI/CD。
+Vault 筆記本體與 skills 由 obsidian-memory 管理；稽核腳本（`scripts/`）與 Quartz 設定、CI/CD 在本 repo。
 
 ## 前置需求
 
@@ -28,7 +28,7 @@ npm run vault:fix           # 稽核並自動修正（需先 clone vault）
 
 ## 發佈
 
-push 到 `main` 後，若異動路徑含 `quartz/**`、`quartz.config.ts`、`quartz.layout.ts`、`package.json`、`package-lock.json` 或 `.github/workflows/deploy.yml`，CI 自動建置並部署至 GitHub Pages。
+push 到 `main` 後，若異動路徑含 `quartz/**`、`quartz.config.ts`、`quartz.layout.ts`、`package.json`、`package-lock.json`、`scripts/**` 或 `.github/workflows/deploy.yml`，CI 自動建置並部署至 GitHub Pages。
 
 **Vault 筆記變動不觸發 CI**，需手動 `workflow_dispatch`。
 

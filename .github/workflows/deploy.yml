@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: .quartz-cache
-          key: quartz-${{ runner.os }}-${{ hashFiles('content/**/*.md') }}
+          key: quartz-${{ runner.os }}-${{ hashFiles('content/**/*.md', 'quartz.config.ts', 'quartz.layout.ts') }}
           restore-keys: |
             quartz-${{ runner.os }}-
       - name: Install dependencies
@@ -79,11 +79,20 @@ jobs:
           title: '❌ Vault 打包失敗'
           description: 'Obsidian Memory 打包失敗（vault:check 或 build）'
 
-      - name: Discord 部署通知
-        if: needs.build.result == 'success'
+      - name: Discord 部署成功通知
+        if: needs.build.result == 'success' && steps.deployment.outcome == 'success'
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          status: ${{ job.status }}
-          title: ${{ job.status == 'success' && '✅ Vault 部署成功' || '❌ Vault 部署失敗' }}
-          description: ${{ job.status == 'success' && 'ob.bugloop.com 已更新' || 'GitHub Pages 部署失敗' }}
+          status: success
+          title: '✅ Vault 部署成功'
+          description: 'ob.bugloop.com 已更新'
+
+      - name: Discord 部署失敗通知
+        if: needs.build.result == 'success' && steps.deployment.outcome != 'success'
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: failure
+          title: '❌ Vault 部署失敗'
+          description: 'GitHub Pages 部署失敗'

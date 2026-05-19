@@ -383,6 +383,7 @@ async function main() {
         const result = applyFixes(abs, audit.issues, audit.parsed, audit.raw);
         allApplied.push(...result.applied);
         blocked.push(...result.blocked);
+        allIssues.push(...result.blocked);
         if (result.renamedTo) currentAbs = result.renamedTo;
         // applyFixes 只處理 autofix=true 的 issue；剩下的（PARSE_ERROR 等）才推進 allIssues
         for (const i of audit.issues)
