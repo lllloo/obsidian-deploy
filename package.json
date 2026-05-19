@@ -18,8 +18,8 @@
     "format": "npx prettier . --write",
     "test": "tsx --test",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1",
-    "vault:check": "cd content && node scripts/vault-check.mjs",
-    "vault:fix": "cd content && node scripts/vault-check.mjs --fix"
+    "vault:check": "node scripts/vault-check.mjs content",
+    "vault:fix": "node scripts/vault-check.mjs content --fix"
   },
   "engines": {
     "npm": ">=10.9.2",
