@@ -9,7 +9,6 @@ on:
       - 'quartz.layout.ts'
       - 'package.json'
       - 'package-lock.json'
-      - 'scripts/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -48,8 +47,6 @@ jobs:
             quartz-${{ runner.os }}-
       - name: Install dependencies
         run: npm ci
-      - name: Vault check (frontmatter + sensitive data)
-        run: npm run vault:check
       - name: Build
         run: npx quartz build
       - name: Upload artifact
@@ -77,7 +74,7 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: failure
           title: '❌ Vault 打包失敗'
-          description: 'Obsidian Memory 打包失敗（vault:check 或 build）'
+          description: 'Obsidian Memory 打包失敗'
 
       - name: Discord 部署成功通知
         if: needs.build.result == 'success' && steps.deployment.outcome == 'success'

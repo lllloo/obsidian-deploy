@@ -27,12 +27,7 @@ git clone https://github.com/lllloo/obsidian-memory.git content
 npx quartz build --serve    # 本地預覽（localhost:8080）需先有 content/
 npm run check               # TypeScript 型別檢查 + Prettier 格式驗證
 npm run format              # 自動格式化
-npm run test                # 執行 scripts/vault-schema.test.mjs（tsx --test）
-npm run vault:check         # 稽核 content/ frontmatter 與檔名（只報告；需 content/）
-npm run vault:fix           # 稽核並自動修正（需 content/）
 ```
-
-`vault:check` / `vault:fix` 執行的是本 repo 的 `scripts/vault-check.mjs`（`--json` 可輸出機器可讀格式）。
 
 ## CI 觸發規則
 
@@ -41,12 +36,13 @@ npm run vault:fix           # 稽核並自動修正（需 content/）
 - `quartz/**`
 - `quartz.config.ts` / `quartz.layout.ts`
 - `package.json` / `package-lock.json`
-- `scripts/**`
 - `.github/workflows/deploy.yml`
 
 **Vault 筆記變動不觸發 CI**，需手動 `workflow_dispatch`。成功/失敗皆透過 `DISCORD_WEBHOOK` secret 發送 Discord 通知。
 
-CI 流程：checkout obsidian-memory → `npm run vault:check` → `npx quartz build` → deploy GitHub Pages。
+CI 流程：checkout obsidian-deploy → checkout obsidian-memory 至 `content/` → `npx quartz build` → deploy GitHub Pages。
+
+deploy job 使用 `if: ${{ !cancelled() }}`，即使 build 失敗也會執行（用於發送失敗通知）；部署本身有額外的 `if: needs.build.result == 'success'` 守門。
 
 ## Quartz 設定重點（`quartz.config.ts`）
 
@@ -61,9 +57,7 @@ CI 流程：checkout obsidian-memory → `npm run vault:check` → `npx quartz b
 
 - `quartz/` — Quartz 框架原始碼（不需修改）
 - `quartz.config.ts` — 站台設定（外觀、plugins、ignorePatterns）
-- `quartz.layout.ts` — 版面配置
-- `scripts/vault-schema.mjs` — frontmatter schema **真實來源**（欄位白名單、順序、必填、型別，用 zod 定義）；變更欄位規則只改這裡
-- `scripts/vault-check.mjs` — vault 稽核腳本（讀取 vault-schema.mjs）；硬規則自動修，語意層問題只 flag
-- `scripts/vault-schema.test.mjs` — schema 單元測試（`npm run test` 執行）
+- `quartz.layout.ts` — 版面配置；三個區塊：`sharedPageComponents`（head/footer 全頁共用）、`defaultContentPageLayout`（單篇筆記）、`defaultListPageLayout`（資料夾/標籤列表頁）
+- `globals.d.ts` / `index.d.ts` — TypeScript ambient 宣告，讓 Quartz 內部型別可被 IDE 識別
 - `AGENTS.md` — `CLAUDE.md` 的 symlink，給非 Claude Code 的 agent 工具讀
 - `.clipper/vault-clipper.json` — Obsidian Web Clipper 模板（`Inbox/Clippings/` 抓取規則，frontmatter 白名單）；修改後 commit 以跨機器同步
