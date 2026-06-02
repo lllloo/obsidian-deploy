@@ -16,11 +16,14 @@ const config: QuartzConfig = {
     locale: "zh-TW",
     baseUrl: "ob.bugloop.com",
     ignorePatterns: [
-      // Obsidian 本地 / vault 內部
-      "private", ".obsidian", "CLAUDE.md", "AGENTS.md", "README.md", "Inbox",
-      // obsidian-memory repo 的工程檔（CI checkout 後會出現在 content/ 根）
+      // 資料夾
+      "private", ".obsidian", "Inbox",
+      // 根目錄 md（index.md 除外）
+      "CLAUDE.md", "AGENTS.md", "README.md",
+      "card-quality.md", "vault-map.md", "SYSTEM-DESIGN.md",
+      // repo 工程檔（CI checkout 後會出現在 content/ 根）
       "package.json", "scripts", "CNAME", "card-review.md",
-      // 敏感資料保險（content/ 下若被誤拖入即攔截）
+      // 敏感資料保險
       ".env*", "*.local", "secrets*", "credentials*", "*.key", "*.pem",
       // 系統雜檔
       ".DS_Store",
