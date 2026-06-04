@@ -12,7 +12,10 @@ const config: QuartzConfig = {
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
-    analytics: null,
+    analytics: {
+      provider: "google",
+      tagId: "G-RJKJTQWD8H",
+    },
     locale: "zh-TW",
     baseUrl: "bugloop.com",
     ignorePatterns: [
