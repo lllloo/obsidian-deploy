@@ -1,6 +1,6 @@
 # obsidian-deploy
 
-Quartz 4 部署框架，將 [obsidian-memory](https://github.com/lllloo/obsidian-memory) vault 發佈至 [ob.bugloop.com](https://ob.bugloop.com)。
+Quartz 4 部署框架，將 [obsidian-memory](https://github.com/lllloo/obsidian-memory) vault 發佈至 [bugloop.com](https://bugloop.com)。
 
 Vault 筆記本體與 skills 由 obsidian-memory 管理；稽核腳本（`scripts/`）與 Quartz 設定、CI/CD 在本 repo。
 

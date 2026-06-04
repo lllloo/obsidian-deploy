@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 專案概覽
 
-此 repo 是 Quartz 4 部署框架，負責把 `obsidian-memory` vault 發佈至 `ob.bugloop.com`。
+此 repo 是 Quartz 4 部署框架，負責把 `obsidian-memory` vault 發佈至 `bugloop.com`。
 
 架構職責分離：
 - **obsidian-deploy**（本 repo）— Quartz 框架設定、CI/CD、GitHub Pages 部署

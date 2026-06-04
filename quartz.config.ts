@@ -14,7 +14,7 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: null,
     locale: "zh-TW",
-    baseUrl: "ob.bugloop.com",
+    baseUrl: "bugloop.com",
     ignorePatterns: [
       // 資料夾
       "private", ".obsidian", "Inbox",

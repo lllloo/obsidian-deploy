@@ -83,7 +83,7 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: success
           title: '✅ Vault 部署成功'
-          description: 'ob.bugloop.com 已更新'
+          description: 'bugloop.com 已更新'
 
       - name: Discord 部署失敗通知
         if: needs.build.result == 'success' && steps.deployment.outcome != 'success'
