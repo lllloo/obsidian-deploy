@@ -60,4 +60,3 @@ deploy job 使用 `if: ${{ !cancelled() }}`，即使 build 失敗也會執行（
 - `quartz.layout.ts` — 版面配置；三個區塊：`sharedPageComponents`（head/footer 全頁共用）、`defaultContentPageLayout`（單篇筆記）、`defaultListPageLayout`（資料夾/標籤列表頁）
 - `globals.d.ts` / `index.d.ts` — TypeScript ambient 宣告，讓 Quartz 內部型別可被 IDE 識別
 - `AGENTS.md` — `CLAUDE.md` 的 symlink，給非 Claude Code 的 agent 工具讀
-- `.clipper/vault-clipper.json` — Obsidian Web Clipper 模板（`Inbox/Clippings/` 抓取規則，frontmatter 白名單）；修改後 commit 以跨機器同步
