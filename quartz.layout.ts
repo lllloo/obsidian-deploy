@@ -1,5 +1,14 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { FileTrieNode } from "./quartz/util/fileTrie"
+
+// 頂層資料夾 slug 為小寫（cards/topics），側邊欄 Explorer 顯示回原本大小寫。
+// 注意：mapFn 會被序列化到瀏覽器端執行，函式體不可引用外部變數。
+const capitalizeTopFolders = (node: FileTrieNode) => {
+  const names: Record<string, string> = { cards: "Cards", topics: "Topics" }
+  const name = names[node.slugSegment]
+  if (name) node.displayName = name
+}
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -37,7 +46,7 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({ mapFn: capitalizeTopFolders }),
   ],
   right: [
     Component.Graph(),
@@ -61,7 +70,7 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({ mapFn: capitalizeTopFolders }),
   ],
   right: [],
 }
