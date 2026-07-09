@@ -22,6 +22,8 @@ const config: QuartzConfig = {
       // 治理模型（obsidian-memory schema/SYSTEM-DESIGN.md）：唯一公開層是 Cards/、Topics/，
       // 其餘私有層整個資料夾排除。新增私有資料夾時記得同步加入。
       "raw", "wiki", "schema", "private", ".obsidian",
+      // updates：日報原料（vault-updates-daily 產出的待讀佇列），性質同 raw，維持私有
+      "updates",
       // 根目錄治理/工程檔（index.md 為站台首頁，保留）
       "CLAUDE.md", "AGENTS.md", "README.md",
       // 敏感資料保險
