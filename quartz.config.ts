@@ -19,13 +19,11 @@ const config: QuartzConfig = {
     locale: "zh-TW",
     baseUrl: "bugloop.com",
     ignorePatterns: [
-      // 資料夾
-      "private", ".obsidian", "Inbox",
-      // 根目錄 md（index.md 除外）
+      // 治理模型（obsidian-memory schema/SYSTEM-DESIGN.md）：唯一公開層是 Cards/、Topics/，
+      // 其餘私有層整個資料夾排除。新增私有資料夾時記得同步加入。
+      "raw", "wiki", "schema", "private", ".obsidian",
+      // 根目錄治理/工程檔（index.md 為站台首頁，保留）
       "CLAUDE.md", "AGENTS.md", "README.md",
-      "card-quality.md", "vault-map.md", "SYSTEM-DESIGN.md",
-      // repo 工程檔（CI checkout 後會出現在 content/ 根）
-      "package.json", "scripts", "CNAME", "card-review.md",
       // 敏感資料保險
       ".env*", "*.local", "secrets*", "credentials*", "*.key", "*.pem",
       // 系統雜檔
