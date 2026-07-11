@@ -46,7 +46,7 @@ deploy job 使用 `if: ${{ !cancelled() }}`，即使 build 失敗也會執行（
 
 ## Quartz 設定重點（`quartz.config.ts`）
 
-- `ignorePatterns`：**唯一公開層是 vault 的 `cards/` 與 `topics/`**（見 obsidian-memory `schema/SYSTEM-DESIGN.md` 治理模型）；私有層 `raw/`（LLM 原始來源）、`wiki/`（LLM 私有知識庫）、`schema/`（治理文件）、`updates/`（日報待讀佇列，性質同 raw）整個資料夾排除，另加 `.env*`、`secrets*` 等敏感資料保險。新增私有資料夾時記得同步加入
+- `ignorePatterns`：**唯一公開層是 vault 的 `cards/` 與 `topics/`**（見 obsidian-memory `schema/SYSTEM-DESIGN.md` 治理模型）；私有層 `raw/`（LLM 原始來源）、`wiki/`（LLM 私有知識庫）、`schema/`（治理文件）維持整個資料夾排除；所有自動產物統一放在 `feeds/**` 並排除，另加 `.env*`、`secrets*` 等敏感資料保險。新增私有資料夾時記得同步加入
 - `filters: [Plugin.RemoveDrafts()]`：frontmatter 加 `draft: true` 的筆記不發佈
 - 日期優先順序：frontmatter → git → filesystem（`CreatedModifiedDate`）
 - Wikilink 解析：`shortest`（`CrawlLinks`），連結目標需在 `content/` 下存在
